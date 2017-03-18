@@ -11,25 +11,54 @@ import java.io.IOException;
 
 public class Client {
     public static void main(String[] args) throws IOException{
+        Scanner scan;
+        BufferedReader input;
+        PrintWriter output;
+        String response, answer;
+        boolean HearAnother = true;
 
         String serverAddress = "localhost";
         int port = 9999;
 
         Socket s = new Socket(serverAddress, port);
 
-        Scanner scan = new Scanner(System.in);
+        output = new PrintWriter(s.getOutputStream(), true);
 
-        System.out.println("What color do you want to choose today?");
-        String color = scan.nextLine();
-
-        PrintWriter pw = new PrintWriter(s.getOutputStream(), true);
-        pw.println(color);
-
-        BufferedReader input =
+        input =
             new BufferedReader(new InputStreamReader(s.getInputStream()));
 
-        String answer = input.readLine();
-        System.out.println(answer);
+        scan = new Scanner(System.in);
+
+        System.out.println("Do you want to hear a knock knock joke? y/n");
+        response = scan.nextLine();
+        if(response.equals("n")){
+            HearAnother = false;    
+        }
+
+        while(HearAnother){
+            if(response.equals("n")){
+                HearAnother = false;    
+                break;
+            }
+            answer = input.readLine();
+            System.out.println(answer);
+
+            System.out.println("who's there");
+            output.println("who's there");
+
+            answer = input.readLine();
+            System.out.println(answer);
+            answer = answer + " who";
+
+            System.out.println(answer);
+            output.println(response);
+
+            answer = input.readLine();
+            System.out.println(answer);
+
+            System.out.println("Do you want to hear another knock knock joke? y/n");
+            response = scan.nextLine();
+        }
 
         System.exit(0);
     }
