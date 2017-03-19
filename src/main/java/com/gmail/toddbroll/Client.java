@@ -40,22 +40,10 @@ public class Client {
                 HearAnother = false;    
                 break;
             }
-            answer = input.readLine();
-            System.out.println(answer);
-
+           String xml = input.readLine();
+            System.out.println("Knock Knock");
             System.out.println("who's there");
-            output.println("who's there");
-
-            answer = input.readLine();
-            System.out.println(answer);
-            answer = answer + " who";
-
-            System.out.println(answer);
-            output.println(response);
-
-            answer = input.readLine();
-            System.out.println(answer);
-
+            System.out.println(xml);
             System.out.println("Do you want to hear another knock knock joke? y/n");
             response = scan.nextLine();
         }
