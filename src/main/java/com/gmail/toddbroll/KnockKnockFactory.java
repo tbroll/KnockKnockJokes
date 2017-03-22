@@ -28,6 +28,7 @@ import org.jdom2.output.XMLOutputter;
   Element root;
   Element lead;
   Element punchline;
+  String xmldocument;
 
   document = new Document();
   root = new Element("jokes");
@@ -43,9 +44,13 @@ import org.jdom2.output.XMLOutputter;
   root.addContent(punchline);
 
   XMLOutputter xmlOut = new XMLOutputter();
+
   System.out.println(xmlOut.outputString(document));
 
-  return xmlOut.outputString(document);
+  //formatting the String
+  xmldocument = xmlOut.outputString(document);
+
+  return xmldocument;
  }
  public static void main(String [] args){
   String [] test = getJoke();
