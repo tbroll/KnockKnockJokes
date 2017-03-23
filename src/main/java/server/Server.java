@@ -18,6 +18,10 @@ public class Server {
         String xmldoc;
         int port = 9999;
 
+        result = KnockKnockFactory.getJoke();
+        xmldoc = KnockKnockFactory.buildXML(result);
+        System.out.println(xmldoc);
+
         ServerSocket listener = new ServerSocket(port);
         System.out.println("Server is listening on " + port);
 
@@ -26,13 +30,14 @@ public class Server {
                 Socket socket = listener.accept();
                 try {
                     in =
-                            new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     out =
-                            new PrintWriter(socket.getOutputStream(), true);
+                        new PrintWriter(socket.getOutputStream(), true);
                     while (true){
                         if(in.readLine().equals("y")) {     // throws NullPointerException if Client closes
                             result = KnockKnockFactory.getJoke();
                             xmldoc = KnockKnockFactory.buildXML(result);
+                            System.out.println(xmldoc);
                             out.println(xmldoc);
                         }
                         else{}
